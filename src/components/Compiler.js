@@ -37,11 +37,12 @@ const Compiler = ({ copiedCode, code }) => {
     outputElement.innerText = "Creating Submission...";
 
     try {
+      // Client-side API call - consider moving to backend proxy for better security
       const response = await fetch("https://judge0-ce.p.rapidapi.com/submissions", {
         method: "POST",
         headers: {
-          "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
-          "x-rapidapi-key": "8086616a45mshb1a1acbf1e95a2dp1eaf0djsnaa765b1fb185", 
+          "x-rapidapi-host": process.env.REACT_APP_RAPIDAPI_HOST,
+          "x-rapidapi-key": process.env.REACT_APP_RAPIDAPI_KEY,
           "content-type": "application/json",
           accept: "application/json",
         },
@@ -61,8 +62,8 @@ const Compiler = ({ copiedCode, code }) => {
             `https://judge0-ce.p.rapidapi.com/submissions/${jsonResponse.token}?base64_encoded=true`,
             {
               headers: {
-                "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
-                "x-rapidapi-key": "8086616a45mshb1a1acbf1e95a2dp1eaf0djsnaa765b1fb185", 
+                "x-rapidapi-host": process.env.REACT_APP_RAPIDAPI_HOST,
+                "x-rapidapi-key": process.env.REACT_APP_RAPIDAPI_KEY,
                 "content-type": "application/json",
               },
             }
