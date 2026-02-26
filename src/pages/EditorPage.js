@@ -20,18 +20,9 @@ const EditorPage = () => {
   const reactNavigator = useNavigate();
   const [clients, setClients] = useState([]);
   const [code, setCode] = useState(localStorage.getItem("input") || "");
-  const [copiedCode, setCopiedCode] = useState("");
 
   const handleCodeChange = (newCode) => {
     setCode(newCode);
-  };
-
-  const passCodeToCompiler = () => {
-    setCode(codeRef.current);
-  };
-
-  const copyToCompiler = () => {
-    setCopiedCode(codeRef.current);
   };
 
   useEffect(() => {
@@ -125,7 +116,7 @@ const EditorPage = () => {
         />
       </div>
       <div className="editorWrap">
-        <Compiler code={code} copiedCode={copiedCode} />
+        <Compiler code={code} />
       </div>
     </div>
   );
