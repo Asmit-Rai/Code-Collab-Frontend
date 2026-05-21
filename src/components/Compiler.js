@@ -33,6 +33,7 @@ const Compiler = ({ copiedCode, code }) => {
 
   const submitCode = async (e) => {
     e.preventDefault();
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     const outputElement = document.getElementById("output");
     outputElement.innerText = "Creating Submission...";
 
@@ -69,6 +70,7 @@ const Compiler = ({ copiedCode, code }) => {
           );
           result = await resultResponse.json();
         }
+        await sleep(1000);
       }
 
       if (result.stdout) {
